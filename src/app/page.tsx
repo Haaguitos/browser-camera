@@ -32,7 +32,13 @@ export default function Home() {
         .filter((key) => key.startsWith("screen-"))
         .map((key) => parseInt(key.replace("screen-", "")))
         .sort((a, b) => a - b);
-      return existingScreens.at(-1) + 1 || 1;
+
+      const nextScreenNumber =
+        existingScreens && existingScreens.length > 0
+          ? existingScreens[existingScreens.length - 1] + 1
+          : 1;
+
+      return nextScreenNumber;
     }
 
     const screenId = `screen-${getScreenId()}`;
